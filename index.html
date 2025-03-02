@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ragini Singh - AIML Student</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <style>
+    /* Fix Remix Icon content property */
+    :where([class^="ri-"]):before {
+      content: "";
+      /* Remove hardcoded content value */
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+
+      0%,
+      20%,
+      50%,
+      80%,
+      100% {
+        transform: translateY(0);
+      }
+
+      40% {
+        transform: translateY(-10px);
+      }
+
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateX(-100px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes rotateIn {
+      from {
+        transform: rotate(-10deg);
+        opacity: 0;
+      }
+
+      to {
+        transform: rotate(0);
+        opacity: 1;
+      }
+    }
+
+    /* Animation classes */
+    .animate-fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+
+    .animate-slide-in {
+      animation: slideIn 0.8s ease-out forwards;
+    }
+
+    .animate-scale-in {
+      animation: scaleIn 0.8s ease-out forwards;
+    }
+
+    .animate-rotate-in {
+      animation: rotateIn 0.8s ease-out forwards;
+    }
+
+    /* Animation delays */
+    .delay-100 {
+      animation-delay: 100ms;
+    }
+
+    .delay-200 {
+      animation-delay: 200ms;
+    }
+
+    .delay-300 {
+      animation-delay: 300ms;
+    }
+
+    .delay-400 {
+      animation-delay: 400ms;
+    }
+
+    .delay-500 {
+      animation-delay: 500ms;
+    }
+  </style>
+  <script>
+    // Optimized Tailwind configuration
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: {
+              DEFAULT: '#0EA5E9',
+              hover: '#0284C7',
+              light: '#38BDF8', // Added light variant
+              dark: '#0369A1'  // Added dark variant
+            },
+            secondary: {
+              DEFAULT: '#64748B',
+              hover: '#475569',
+              light: '#94A3B8', // Added light variant
+              dark: '#334155'   // Added dark variant
+            }
+          },
+          borderRadius: {
+            // Simplified radius scale with consistent increments
+            'none': '0',
+            'xs': '0.125rem',  // 2px
+            'sm': '0.25rem',   // 4px
+            DEFAULT: '0.5rem', // 8px
+            'md': '0.75rem',   // 12px
+            'lg': '1rem',      // 16px
+            'xl': '1.25rem',   // 20px
+            '2xl': '1.5rem',   // 24px
+            '3xl': '2rem',     // 32px
+            'full': '9999px'
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+  <!-- Enhanced navbar with improved accessibility and performance -->
+  <header
+    class="fixed w-full bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm z-50 border-b border-gray-100 dark:border-gray-800 shadow-sm">
+    <nav class="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between" role="navigation"
+      aria-label="Main navigation">
+      <a href="#"
+        class="text-2xl font-['Pacifico'] text-primary-DEFAULT hover:text-primary-hover transition-colors duration-200"
+        aria-label="Portfolio">PORTFOLIO</a>
+
+      <!-- Optimized Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-6 lg:space-x-8">
+        <a href="#about" class="nav-link hover:text-primary-DEFAULT transition-colors duration-200">About</a>
+        <a href="#projects" class="nav-link hover:text-primary-DEFAULT transition-colors duration-200">Projects</a>
+        <a href="#skills" class="nav-link hover:text-primary-DEFAULT transition-colors duration-200">Skills</a>
+        <a href="#experience" class="nav-link hover:text-primary-DEFAULT transition-colors duration-200">Experience</a>
+        <a href="#contact" class="nav-link hover:text-primary-DEFAULT transition-colors duration-200">Contact</a>
+      </div>
+
+      <!-- Enhanced Mobile Menu Button -->
+      <button
+        class="md:hidden p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT"
+        onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false" aria-controls="sidebar">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </nav>
+
+    <!-- Optimized Mobile Sidebar -->
+    <div id="sidebar"
+      class="fixed top-0 left-0 h-full w-72 bg-white dark:bg-gray-900 shadow-xl transform -translate-x-full transition-transform duration-300 ease-in-out z-50"
+      aria-hidden="true">
+      <button
+        class="absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-DEFAULT"
+        onclick="toggleMenu()" aria-label="Close menu">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+      <nav class="min-h-screen flex flex-col mt-16 space-y-4 px-6 bg-slate-900 " role="navigation"
+        aria-label="Mobile navigation">
+        <a href="#about" onclick="toggleMenu()"
+          class="mobile-nav-link py-2 text-white hover:text-blue-400 transition-colors duration-200">
+          About
+        </a>
+
+        <a href="#experience" onclick="toggleMenu()"
+          class="mobile-nav-link py-2 text-white hover:text-blue-400 transition-colors duration-200">
+          Experience
+        </a>
+        <a href="#skills" onclick="toggleMenu()"
+          class="mobile-nav-link py-2 text-white hover:text-blue-400 transition-colors duration-200">
+          Skills
+        </a>
+        <a href="#projects" onclick="toggleMenu()"
+          class="mobile-nav-link py-2 text-white hover:text-blue-400 transition-colors duration-200">
+          project
+        </a>
+        <a href="#contact" onclick="toggleMenu()"
+          class="mobile-nav-link py-2 text-white hover:text-blue-400 transition-colors duration-200">
+          Contact
+        </a>
+
+
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+
+    <section class="min-h-screen relative bg-gray-900">
+      <!-- Background Image -->
+      <div class="absolute inset-0 bg-[url('https://public.readdy.ai/ai/img_res/f3c272b2c593ba9da1857e164f5a0e89.jpg')] 
+             opacity-10 bg-cover bg-center bg-fixed">
+      </div>
+
+      <!-- Hero Section -->
+      <div class="relative z-10 min-h-screen flex flex-col justify-center">
+        <!-- Container -->
+        <div class="container mx-auto px-4 py-8 md:py-16">
+          <div class="grid md:grid-cols-2 items-center gap-8">
+
+            <!-- Text Content -->
+            <div class=" w-full animate-[fadeIn_0.8s_ease-out]">
+              <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl pl-20 font-bold text-white leading-tight">
+                Hi, I'm Ragini Singh,
+                <span class="block text-primary mt-2 animate-[fadeIn_0.8s_ease-out_0.2s]">
+                  AIML Student
+                </span>
+              </h1>
+              <p class="text-xl text-gray-600 leading-relaxed text-white">
+                Blending AI, cybersecurity, and clean code to build intelligent solutions. Passionate about crafting
+                modern web applications, AI-powered tools, and secure digital experiences that make an impact.
+              </p>
+            </div>
+
+            <!-- Image -->
+            <div class="flex justify-center md:justify-end pt-10 animate-[scaleIn_0.8s_ease-out] pr-20">
+              <img src="img/myself.jpeg" alt="Ragini Singh" class="w-48 h-64 sm:w-60 sm:h-80 md:w-72 md:h-96 lg:w-80 lg:h-[500px] 
+                     object-cover rounded-3xl shadow-2xl 
+                     hover:scale-[1.02] transition-transform duration-300" loading="lazy">
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div
+          class="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer hover:text-primary transition-colors duration-200">
+          <i class="ri-arrow-down-line text-2xl"></i>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-slate-900 text-center mb-16 animate-[fadeIn_0.8s_ease-out]">About Me</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="relative animate-[slideIn_0.8s_ease-out]">
+            <img src="img/download.jpeg" alt="Working"
+              class="w-full h-auto rounded-2xl shadow-xl hover:transform hover:scale-[1.02] transition-transform duration-300"
+              loading="lazy">
+          </div>
+          <div class="space-y-6 animate-[fadeIn_0.8s_ease-out]">
+            <p class="text-lg text-gray-600 leading-relaxed">
+              I am a passionate AI & ML enthusiast with a strong background in building intelligent and secure digital
+              solutions. With expertise in machine learning, web development, and cybersecurity, I develop innovative
+              applications that blend technology with real-world impact.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed">
+              I have worked on projects ranging from fake news detection using AI to MRI-based brain tumor
+              classification. My experience also includes building modern web applications, and leveraging data-driven
+              insights to solve complex problems.
+            </p>
+            <p class="text-lg text-gray-600 leading-relaxed">
+              I also have experience in Exploratory Data Analysis (EDA) and understanding customer behavior through
+              data.
+              I am always eager to explore new technologies, contribute to impactful projects, and innovate solutions
+              that make a difference.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <span
+                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default">HTML</span>
+              <span
+                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default">CSS</span>
+              <span
+                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default">JavaScript</span>
+              <span
+                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default">Python</span>
+              <span
+                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default">MySQL</span>
+              <span
+                class="px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium hover:bg-primary/20 transition-colors cursor-default">Figma</span>
+            </div>
+            <a href="assets/resume.pdf" download="Ragini_Singh_Resume.pdf"
+              class="mt-4 px-6 py-3 bg-white border-2 border-primary text-primary font-medium rounded-lg hover:bg-primary/5 transition-all duration-300 transform hover:scale-105 inline-flex items-center gap-2">
+              <i class="ri-download-line"></i>
+              Download Resume
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-4xl font-bold text-slate-900 text-center mb-16 animate-[fadeIn_0.8s_ease-out]">Featured Project
+        </h2>
+        </h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Project 1 -->
+          <div
+            class="relative group rounded-lg overflow-hidden shadow-lg transform transition-all duration-300 hover:scale-[1.02]">
+            <img src="img/brain.png" alt="Brain Tumor Detection Project"
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy">
+            <a href="https://github.com/ragini117/Brain-Tumor-Detection" target="_blank" rel="noopener noreferrer"
+              class="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-60 opacity-0 group-hover:opacity-100 transition-all duration-300">
+              <span class="text-white text-lg font-semibold px-4 py-2 rounded-lg text-center">
+                Brain Tumor Detection System
+              </span>
+              <i class="ri-github-fill text-5xl text-white hover:text-blue-500 transition-colors duration-300 mt-2"></i>
+            </a>
+          </div>
+          <!-- Project 2 -->
+          <div class="relative group rounded-lg overflow-hidden shadow-lg">
+            <!-- Project Image -->
+            <img src="img/data.png" alt="Project 2"
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+
+            <!-- GitHub Link with Hover Effect -->
+            <a href="https://github.com/ragini117/Customer-churn-Analysis" target="_blank"
+              class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+
+              <!-- Project Title -->
+              <span class="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded-lg">
+                Customer Churn Analysis
+              </span>
+
+              <!-- GitHub Icon -->
+              <i
+                class="ri-github-fill ri-4x text-gray-800 group-hover:text-red-500 transition-colors duration-300 mt-2"></i>
+            </a>
+          </div>
+          <!-- Project 3 -->
+          <div class="relative group rounded-lg overflow-hidden shadow-lg">
+            <!-- Project Image -->
+            <img src="img/game.png" alt="Project 3"
+              class="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-105">
+
+            <!-- Overlay with Title & GitHub Icon -->
+            <a href="https://github.com/ragini117/Snake-game-" target="_blank"
+              class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+
+              <!-- Project Title -->
+              <span class="text-white text-lg font-semibold bg-black bg-opacity-50 px-4 py-2 rounded-lg">
+                Snake Game
+              </span>
+
+              <!-- GitHub Icon -->
+              <i
+                class="ri-github-fill ri-4x text-gray-800 group-hover:text-green-500 transition-colors duration-300 mt-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS SECTIONS -->
+
+    <section id="skills" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center text-slate-900 mb-16">Skills & Expertise</h2>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">Artificial Intelligence & ML</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">Cybersecurity</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">Python</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">Web Development</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">Data Analytics</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">MySQL</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white">
+            <h3 class="text-lg font-semibold">Figma</h3>
+          </div>
+          <div class="bg-slate-900 p-6 rounded-2xl shadow-lg text-center text-white"">
+            <h3 class=" text-lg font-semibold">Machine Learning</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Experience SECTION -->
+    <section id="experience" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-3xl sm:text-4xl font-bold text-center text-slate-900 mb-12 sm:mb-16">
+          Work Experience
+        </h2>
+
+        <div class="max-w-4xl mx-auto">
+          <!-- Timeline item -->
+          <div
+            class="relative flex flex-col md:flex-row items-start md:items-center pl-8 md:pl-10 pb-12 border-l-2 border-primary">
+
+            <!-- Timeline circle -->
+            <div class="absolute left-0 top-0 w-4 h-4 bg-primary rounded-full -translate-x-1/2"
+              style="margin-left: -2px;">
+            </div>
+
+            <!-- Content -->
+            <div class="bg-white p-4 sm:p-6 rounded-lg shadow-sm flex-1 md:mr-6">
+              <h3 class="text-xl font-bold mb-2">
+                Public Relation Officer
+              </h3>
+              <p class="text-gray-600 mb-2">
+                UCoE E-Cell • 2024 - Present
+              </p>
+              <p class="text-gray-700 leading-relaxed">
+                As the Public Relations Officer at my college's Entrepreneurship Cell (E-Cell), I led outreach
+                initiatives, managed collaborations, and strengthened brand visibility. I worked closely with a team to
+                foster partnerships, organize events, and implement strategic communication practices, enhancing
+                E-Cell’s impact and engagement.
+              </p>
+            </div>
+
+            <!-- Image -->
+            <div class="mt-4 md:mt-0 md:ml-4">
+              <img src="img/pro.jpeg" alt="Work Experience Image"
+                class="w-full sm:w-60 object-cover rounded-lg shadow-md">
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- CONTACT SECTION -->
+
+    <section id="contact" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h2 class="text-4xl font-bold text-center text-slate-700 mb-16">Get in Touch</h2>
+        <div class="grid md:grid-cols-2 grid-cols-1 gap-12">
+
+          <div class="space-y-8">
+            <h3 class="text-2xl text-slate-700 text-center font-semibold">Let's talk about your project</h3>
+            <p class="text-gray-600">
+              I'm always excited to explore new projects, innovative ideas, and collaborative opportunities. If you have
+              a vision you'd like to bring to life, let's connect and make it happen!
+            </p>
+            <div class="space-y-4">
+              <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl">
+                  <i class="ri-mail-line text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600">Mail me at</p>
+                  <p class="text-gray-900 break-all">rraginisingh117@gmail.com</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl">
+                  <i class="ri-phone-line text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600">Call me at</p>
+                  <p class="text-gray-900">+91 9834369215</p>
+                </div>
+              </div>
+              <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl">
+                  <i class="ri-map-pin-line text-xl"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-600">Visit me at</p>
+                  <p class="text-gray-900">Nallasopara, Palghar</p>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-wrap gap-4">
+              <!-- GitHub -->
+              <a href="https://github.com/ragini117" target="_blank"
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-colors">
+                <i class="ri-github-line text-xl"></i>
+              </a>
+
+              <!-- LinkedIn -->
+              <a href="https://www.linkedin.com/in/ragini117" target="_blank"
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-colors">
+                <i class="ri-linkedin-line text-xl"></i>
+              </a>
+
+              <!-- Kaggle (Using Font Awesome) -->
+              <a href="https://www.kaggle.com/ragini1245" target="_blank"
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-colors">
+                <i class="fab fa-kaggle text-xl"></i>
+              </a>
+              <a href="https://leetcode.com/u/Ragini12/" target="_blank"
+                class="w-12 h-12 flex items-center justify-center bg-primary/10 text-primary rounded-xl hover:bg-primary/20 transition-colors">
+                <i class="fas fa-code text-xl"></i>
+              </a>
+            </div>
+
+          </div>
+          <!-- FORM SUBMISSION -->
+          <div class="bg-slate-900 p-6 rounded-lg shadow-sm">
+            <form id="contactForm" class="space-y-6">
+              <div class="grid sm:grid-cols-2 grid-cols-1 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Name</label>
+                  <input type="text" name="yourname" id="yourname"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-600 bg-slate-800 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    placeholder="Your name" required>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                  <input type="email" name="youremail" id="youremail"
+                    class="w-full px-4 py-3 rounded-xl border border-gray-600 bg-slate-800 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                    placeholder="Your email" required>
+                </div>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Subject</label>
+                <input type="text" name="subject" id="subject"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-600 bg-slate-800 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                  placeholder="Subject" required>
+              </div>
+              <div>
+                <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                <textarea rows="6" name="yourMessage" id="yourMessage"
+                  class="w-full px-4 py-3 rounded-xl border border-gray-600 bg-slate-800 text-white focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors"
+                  placeholder="Your message" required></textarea>
+              </div>
+              <button type="submit"
+                class="w-full px-8 py-4 bg-primary text-white font-medium rounded-xl hover:bg-primary/90 transition-colors whitespace-nowrap">
+                Send Message
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-slate-900 text-white py-12">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-bold mb-4">About</h3>
+            <p class="text-gray-400">I'm an AIML student passionate about creating innovative solutions using artificial
+              intelligence and machine learning technologies.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li><a href="#about" class="text-gray-400 hover:text-white transition-colors">About</a></li>
+              <li><a href="#projects" class="text-gray-400 hover:text-white transition-colors">Projects</a></li>
+              <li><a href="#skills" class="text-gray-400 hover:text-white transition-colors">Skills</a></li>
+              <li><a href="#contact" class="text-gray-400 hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-bold mb-4">Connect</h3>
+            <div class="flex space-x-4">
+              <a href="https://github.com/ragini117" target="_blank"
+                class="text-gray-400 hover:text-white transition-colors">
+                <i class="fab fa-github text-xl"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/ragini117/" target="_blank"
+                class="text-gray-400 hover:text-white transition-colors">
+                <i class="fab fa-linkedin text-xl"></i>
+              </a>
+              <a href="https://www.kaggle.com/ragini1245" target="_blank"
+                class="text-gray-400 hover:text-white transition-colors">
+                <i class="fab fa-kaggle text-xl"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+          <p>&copy; 2024 Ragini Singh. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+</body>
+<script>
+
+  let isOpen = false;
+
+  const sidebar = document.getElementById('sidebar');
+  const toggleButton = document.querySelector('[aria-controls="sidebar"]');
+
+  const toggleMenu = () => {
+    isOpen = !isOpen;
+
+    // Use CSS transform for better performance
+    sidebar.style.transform = isOpen ? 'translateX(0)' : 'translateX(-100%)';
+
+    // Update ARIA attributes
+    sidebar.setAttribute('aria-hidden', !isOpen);
+    toggleButton.setAttribute('aria-expanded', isOpen);
+
+    // Toggle body scroll
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+
+    // Add click outside listener when menu is open
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+    } else {
+      document.removeEventListener('click', handleClickOutside);
+    }
+  }
+
+  // Close menu when clicking outside
+  const handleClickOutside = (event) => {
+    if (isOpen && !sidebar.contains(event.target) && !toggleButton.contains(event.target)) {
+      toggleMenu();
+    }
+  }
+
+  document.getElementById("contactForm").addEventListener("submit", async function (event) {
+    event.preventDefault(); // Prevent default form submission
+
+    const name = document.getElementById("yourname").value;
+    const email = document.getElementById("youremail").value;
+    const subject = document.getElementById("subject").value;
+    const message = document.getElementById("yourMessage").value;
+
+    try {
+      const response = await fetch("http://localhost:5000/send", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, subject, message })
+      });
+
+      const result = await response.json();
+      alert(result.message); // Show success or error message
+    } catch (error) {
+      alert("Failed to send message. Please try again.");
+    }
+  });
+
+</script>
+
+</html>
